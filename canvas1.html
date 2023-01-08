@@ -1,0 +1,64 @@
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>HTML|Canvas</title>
+        <style>
+            canvas{
+                border: 2px solid black;
+                background-color: rgb(241, 234, 234);
+            }
+        </style>
+
+        <script>
+            var c;
+            var ctx;
+            function init(){
+                c= document.getElementById('mycanvas');
+                ctx=c.getContext('2d');
+                draw();
+            }
+
+            function draw(){
+                // Draw red square
+                ctx.fillStyle="red";
+                ctx.fillRect(30,30,50,50);
+                ctx.strokeStyle="black";
+                ctx.lineWidth="3";
+                ctx.strokeRect(30,30,50,50);
+                
+                // Draw black square
+                ctx.fillStyle="black";
+                ctx.fillRect(40,40,50,50);
+                // Draw text
+                ctx.font='30pt Arial';
+
+                // Create gradient
+                var gradient=ctx.createLinearGradient(0,0,c.width,0);
+                gradient.addColorStop("0","red");
+                gradient.addColorStop("1","black");
+
+                // Fill text the gradient
+                ctx.fillStyle=gradient;
+                ctx.fillText("My Company",100,80); 
+
+                // Define line
+                ctx.strokeStyle="black";
+                ctx.fillStyle="red";
+                ctx.lineWidth= 2;
+
+                ctx.beginPath();
+                ctx.moveTo(90,90);
+                ctx.lineTo(350,90);
+                ctx.stroke();
+                ctx.closePath();
+            }
+        </script>
+    </head>
+    <body onload="init()">
+        <canvas id="mycanvas" width="400" height="150">
+        <p>Sorry ur browser doesn't use  canvas feature</p>
+        </canvas>
+    </body>
+    </html>
